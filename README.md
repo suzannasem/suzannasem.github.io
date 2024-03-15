@@ -3,7 +3,7 @@ I'm a math major interested in asset management and trading. I have experience u
 Here you'll find some projects I've worked on!
 
 # Math 325: Optimal Control Theory
-Project 1: Bacteria Growth with Chemical Nutrient and Hindering Byproduct
+[Project 1](https://github.com/suzannasem/Bacterial_Growth): Bacteria Growth with Chemical Nutrient and Hindering Byproduct
 
 # Math 295: Statistics with R
 Project 1:
