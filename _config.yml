@@ -1,9 +1,5 @@
 title: Welcome
 author: Suzanna Semaan
-theme: jekyll-theme-minima
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-skin: solarized-light
+theme: jekyll-theme-slate
 
 user_url: "https://www.linkedin.com/in/suzanna-s-" }
