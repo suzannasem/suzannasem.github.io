@@ -1,0 +1,390 @@
+% COPY AND PASTE THE CODE THROUGH "START YOUR DOCUMENT" FOR EACH NEW REPORT
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\documentclass[10pt]{article}
+
+% import mathy things
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\newtheoremstyle{exmp}{3pt}{3pt}{\small}{\parindent}{\bfseries}{:}{0.5em}{}
+\theoremstyle{exmp}
+\newtheorem{example}{Example}
+
+% use pictures and colors
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{xcolor}
+
+% set page margins
+\usepackage[top=1in, bottom = 1in, left=1in, right = 1in,letterpaper]{geometry}
+
+
+\usepackage{enumerate}
+% usepackage{epstopdf} 	%% uncomment to import .eps files on a Mac.
+\usepackage{mdwlist}
+\usepackage{ulem}
+
+% = = = = = = = = [BEGIN DO_NOT_EDIT]= = = = = = = = = = = = = =
+% Define custom commands for scientific review
+\newcommand\reporttitle[1]{{#1}}
+\newcommand{\reportsubtitle}[1]{{\large Milestone \#{#1}}\\[-0.5em]{\normalsize\textsc{Math 325}}}
+% setup for title and author(s)
+\makeatletter
+\newcommand{\makeReportTitle}{% 
+\title{\reporttitle \\ \reportsubtitle{\reportnumber}}
+
+  \@ifundefined{authortwo}{%
+ 	\author{\authorone}%
+	}{%
+	\@ifundefined{authorthree}{%
+  		\author{\authorone \and \authortwo}%
+		}{%
+ 		\author{\authorone \and \authortwo \and \authorthree}%
+		}}%
+ 
+\maketitle
+\thispagestyle{empty}
+}
+\makeatother
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% = = = = = = = = [END DO_NOT_EDIT]= = = = = = = = = = = = = = 
+
+
+
+
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+%		SETUP TITLE PAGE -- UPDATE {content} FOR EACH NEW ASSIGNMENT
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+% DEFINE A DESCRIPTIVE REPORT TITLE GIVEN THE TOPIC OF YOUR REPORT
+% Instructions: replace text with your own title
+\def\reporttitle{Bacteria Growth with Chemical Nutrient and Hindering Byproduct}
+
+% THIS TELLS ME WHICH REPORT NUMBER THIS IS
+% Instructions: replace report # only
+\def\reportnumber{1}
+
+
+% YOU ARE AUTHORONE! 
+% Instructions: [1] replace text with your full name(s); 
+%				[2] delete '\and...' if you were the only one working on the assignment
+\def\authorone{Suzanna Semaan}
+
+% = = = = = = = = = [END TITLE PAGE SETUP] = = = = = = = = = = = = 				
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+
+
+
+
+
+
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+%				START YOUR DOCUMENT
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+\begin{document}		% Text will appear after this command
+% make title page
+\makeReportTitle
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+% - - - - - - - - - - - REPORT STARTS HERE - - - - - - - - - -
+
+
+
+% - - - - - - - - - - - Introduction - - - - - - - - -
+\section{Introduction} 
+\label{sec:introduction} 	
+
+As bacteria are often grown in labs for medical usage, researchers need to understand how bacterial growth rate is affected by different factors. In the scenario being studied in this paper, adding a chemical nutrient to the bacteria is known to speed their reproductive rate, but this chemical process releases a byproduct known to have a hindering effect on growth. Particularly, the byproduct has a greater effect when the bacterial concentration is smaller, decreasing as the concentration grows. \\
+
+\noindent The question motivating our research is how to maximize the bacterial concentration while minimizing the amount of chemical nutrient used. We aim to represent the size of the bacteria concentration $x(t)$ using an optimal control model. This approach is particularly useful as it allows us to easily minimize and maximize different values over time, rather than a typical calculus optimization method which minimizes or maximizes at a singular point in time. We begin by defining our central differential equation and optimal control problem, continue by deriving necessary conditions, solving numerically using MATLAB, and conclude with testing the model for different parameter values.
+
+% - - - - - - - - - - - END Introduction - - - - - - - - - - -
+
+
+% - - - - - - - - - - - Model Development - - - - - - - - -
+\section{Model Development} 
+\label{sec:modeldesign} 	
+\subsection{Assumptions}
+\label{sec:assumptions}
+
+We start with defining $x'(t)$, that is, the bacterial growth rate. Bacteria naturally have an exponential growth pattern, meaning the differential equation will be initially represented by
+
+\begin{equation}
+    x'(t) = rx \label{1}
+\end{equation}
+
+ \noindent where $r$ is the growth rate. Note that in this paper, we often write $x(t)$ as simply $x$ for brevity, but know that this represents a function, not a constant. Next, we consider the addition of the chemical nutrient; let $u(t)$ be the amount of nutrient added at time $t$. The more nutrient is added, the larger the bacteria concentration becomes, so it seems reasonable to add their product to the differential equation. Considering also the strength of the nutrient, which we represent as the parameter $A$, it follows that
+
+ \begin{equation}
+     x'(t) = rx + Aux
+ \end{equation}
+ 
+\noindent It is time to consider the effects of the chemical byproduct that reduces the bacterial growth rate. If we let $B$ represent the strength of the byproduct, then it seems reasonable that the more chemical $u(t)$ is added, the greater effect the byproduct will have; we use a quadratic $Bu(t)^2$ to best show this phenomenon. The literature also explains that the relationship between concentration size and the effect of the byproduct is roughly exponential; that is, as $x(t)$ increases, we need a model that makes the quantity $Bu(t)^2$ become smaller exponentially, and $e^{-x(t)}$ begins to look like a reasonable choice. Putting it all together brings us
+
+\begin{equation}
+    x'(t) = rx + Aux - Bu^2e^{-x}
+\end{equation}
+
+\noindent Note that the sign on $Bu^2e^{-x}$ is negative to account for the reduction in growth; we assume that $r,A,B \geq 0$ for all time. With our differential equation defined, we may begin to develop the optimal control problem.
+
+\subsection{Optimal Control}
+\label{optimalcontrol}
+
+To answer our research question, the optimal control model proves particularly useful as it allows for maximization of one quantity, $x(t)$, and simultaneous minimization of another, $u(t)$. The control in this experiment is the amount of chemical nutrient added. For simplicity's sake, we will consider the model from $t = 0$ to $t = 1$, and our maximization of $x(t)$ will be at the end of this interval, at $t = 1$. \\
+
+\noindent To make sure we maximize specifically at $t = 1$, we make use of a payoff term in the optimal control problem. Written as $Cx(1)$, this term ensures that we maximize exactly at $x(1)$, with the parameter $C \geq 0$ representing how much we weigh maximizing $x$ compared to minimizing $u$. Next, we describe how we minimize the amount of chemical nutrient used. Observe that we subtract the maximization of $u(t)$ in the formal problem below; this effectively functions the same as minimizing the positive integral. The choice of $u(t)^2$ is made for mathematical ease, that is, to greater emphasize how changes in time relate to changes in the amount of chemical nutrient used. \\ 
+
+\noindent We now state the formal optimal control problem:
+
+\begin{align*}
+    \max_u Cx(1) &- \int_0^1 u(t)^2 dt \\
+    \text{subject to }  x'(t) = rx + Aux - &Bu^2e^{-x}, x(0) = x_0, r, A,B,C \geq 0
+\end{align*}
+% - - - - - - - - - - - END Model Design - - - - - - - - - - -
+
+
+
+% - - - - - - - - - - - Model Solution - - - - - - - - -
+\section{Model Solution} 
+\label{sec:modelsolution} 	
+
+The goal of solving an optimal control problem is to create a system of differential equations for $\lambda$ and $x$ so that we can find equations $\lambda(t)$ and $x(t)$ modeling their optimal behavior. To accomplish this, we will first use the Hamiltonian to derive the adjoint and optimality conditions. We must also find our optimal control $u^*(t)$, which in this case is the ideal amount of chemical nutrient to add over time. To do so, we solve for $u^*(t)$ in terms of $\lambda$. Finally, we define the transversality condition and are rewarded with our differential equations. \\
+
+\noindent To solve our optimal control problem, we first define the Hamiltonian. The standard Hamiltonian is defined as $H = f + \lambda g$, where $f$ is the integrand and $g$ is the differential equation $x'(t)$. This yields
+
+\begin{align}
+    H = f+ \lambda g =& -u^2 + \lambda(rx + Aux - Bu^2e^{-x}) \\
+    =& -u^2 + \lambda rx + \lambda Aux - \lambda Bu^2e^{-x} 
+\end{align}
+
+\noindent From the Hamiltonian we can find the adjoint and optimality conditions. The adjoint equation provides the differential equation $\lambda'(t)$ and is defined as $- \frac{\partial H}{\partial x}$. From the Hamiltonian, we can see that
+
+\begin{align}
+    \lambda'(t) =& -(\lambda r + \lambda Au + \lambda Bu^2e^{-x}) \\
+    =& -\lambda r - \lambda Au - \lambda Bu^2e^{-x}
+\end{align}
+
+\noindent Next, we find the optimality condition to solve for $u^*(t)$ in terms of $\lambda$; to do so, we take the partial derivative of $H$ with respect to $u$ and set it equal to zero, which we write as
+
+\begin{align}
+    \frac{\partial H}{\partial u} = 0
+\end{align}
+ 
+\noindent Observe that $\frac{\partial H}{\partial u} = -2u + \lambda Ax - 2\lambda Bue^{-x}$, so by setting this equal to zero, we can algebraically solve for $u^*$ as follows.
+
+\begin{align*}
+-2u + \lambda Ax - 2\lambda Bue^{-x} &= 0 \\ 
+    -u(2(1+\lambda Be^{-x})) &= -\lambda Ax \\
+u^* = \frac{\lambda Ax}{2(1+\lambda Be^{-x})}
+\end{align*}
+
+\noindent All that is left to be able to solve the differential equations for $x'(t)$ and $\lambda'(t)$ is to have an initial condition for $\lambda$. The transversality condition provides this for us by providing a value for $\lambda(t_f)$, though we have to first consider the significance of our payoff term $Cx(1)$. We let $x(1)=s$ for simplicity, and write our payoff term as a function $\varphi(s) = C(s)$. This allows us to easily take the derivative $\varphi'(s) = C$, which informs our transversality condition $\lambda(1) = C$. The reasoning behind this method is beyond the scope of this report; see [bibliography] for a formal proof. \\
+
+\noindent We put these conditions together to form our differential equations for $\lambda$ and $x$. Note that we have substituted $u^*$ where appropriate so that our equations are solely in terms of $x$ and $\lambda$, resulting in
+
+\begin{align}
+    x'(t) = rx + A(\frac{\lambda Ax}{2(1+\lambda Be^{-x})})x - B(\frac{\lambda Ax}{2(1+\lambda Be^{-x})})^2e^{-x}, x(0) = x_0 \\
+    \lambda'(t) = -\lambda r - \lambda A(\frac{\lambda Ax}{2(1+\lambda Be^{-x})}) - \lambda B(\frac{\lambda Ax}{2(1+\lambda Be^{-x})})^2e^{-x}, \lambda(1) = C
+\end{align}
+
+\noindent Before beginning, we ensure that our characterization of $u^*$ is well-defined by showing that $\lambda(t) > 0$ for all time. Using separation of variables on the adjoint equation and plugging in $\lambda(1) = 0$, we can see that $\lambda(t) = \frac{C}{e^{-r-Au-Be^{x}u^2}}e^{-rt-Aut-Be^{x}tu^2}$, which is positive for all time. \\
+
+\noindent Due to the complexity of these equations, we are unable to solve analytically using Mathematica. We instead turn to numerical approximations using the forward-backward sweep method with runge-kutta 4 in MATLAB. With our model developed, we can begin to test the effects of different parameters on the bacteria concentration $x(t)$ and the amount of chemical nutrient added $u^*(t)$.
+
+% - - - - - - - - - - - END Model Solution - - - - - - - - - - -
+
+
+% - - - - - - - - - - - Results - - - - - - - - -
+\newpage \section{Experimentation/Results}
+\label{sec:results} 	
+
+\subsection{Preliminary Testing}
+
+We begin our simulation with the following parameters, represented in Figure \ref{fig:start}:
+
+\begin{align*}
+    r = 1 && A = 1 && B = 12 && C = 1 && x_0 = 1
+\end{align*}
+
+\begin{figure}
+\centering
+\includegraphics[height = 3.5in]{M1 - start.png}
+\caption{Graph of Optimal State and Control for Initial Parameter Values.}
+\label{fig:start}
+\end{figure}
+
+\noindent Observe that we begin with very little chemical nutrient added, allowing the bacteria to multiply at their naturally exponential growth rate. Around $t = 0.6$ and $t = 0.8$, we see a significant increase in the amount of chemical nutrient used, which corresponds to a strong increase in the bacterial concentration. \\
+
+\noindent To test the rigor of our model, we proceed by varying each parameter and observing its effects on the amount of chemical nutrient used $u^*(t)$ and the bacterial concentration $x(t)$ during the time interval $t = 0$ to $t = 1$.
+
+\subsection{Varying $x_0$}
+
+\begin{figure}
+\centering
+\includegraphics[height = 4in]{M1 - small x0.png}
+\caption{Optimal Bacterial Concentration and Optimal Amount of Added Chemical Nutrient with $x_0 = 0.1$ and $x_0 = 0.0001$.}
+\label{fig:sx0}
+\end{figure}
+
+\noindent Perhaps a researcher would like to understand the optimal amount of chemical nutrient to add with an extremely small bacterial concentration, such as  $x_0 = 0.1$ or $x_0 = 0.0001$. We can see in Figure \ref{fig:sx0} that with an initial concentration of $x_0 = 0.1$, the concentration increases roughly exponentially, as very little nutrient (less than $0.015$ units) is added. By the end of the time interval, there is still no spike in nutrient injection like we see for $x_0 = 1$. Starting with $x_0 = 0.001$ yields a completely different result: the bacterial concentration is not large enough to increase at a rate visible on this scale, and no nutrient is added. \\
+
+\begin{figure}
+\centering
+\includegraphics[height = 4in]{M1 - large x0.png}
+\caption{Optimal Bacterial Concentration and Optimal Amount of Added Chemical Nutrient with $x_0 = 1.1$ and $x_0 = 1.1495$.}
+\label{fig:Lx0}
+\end{figure}
+
+\noindent Suppose next that we want to understand what amount of nutrient a larger initial concentration requires for optimal growth. We test this with initial concentrations $x_0 = 1.1$ and $x_0 = 1.1495$ in Figure \ref{fig:Lx0}. Though the solutions for both the optimal control and state begin very close together, increasing the concentration by only $0.0495$ has caused the final bacterial concentration to nearly double by the end of the time interval. We see a sharp increase in the amount of nutrient added around $t = 0.8$ for initial concentration $x_0 = 1.1495$, which quickly flattens out between $t = 0.9$ and $t = 1$. \\
+
+\begin{figure}
+\centering
+\includegraphics[height = 3.5in]{M1 - all x0.png}
+\caption{Optimal Bacterial Concentration and Optimal Amount of Added Chemical Nutrient Varying $x_0$.}
+\label{fig:allx0}
+\end{figure}
+
+\noindent In Figure $4$, we can see various values of $x_0$ and their effects on the final bacterial concentration. The slight variation from $ x = 1$ to $x_0 = 1.1$ has no significant effect until around $t = 0.6$. By $t = 1$, we can see that the bacterial concentration is $1.5$ times larger with just this small adjustment, and nearly three times as large when we consider $x_0 = 1.1495$. The slight decrease to $x_0 = 0.9$ is unnoticeable early on, but reduces the final concentration by about one unit. \\
+
+\newpage
+\subsection{Varying A}
+
+\noindent If we'd like to understand the effects of using a more diluted chemical nutrient, we can decrease $A$. Reducing $A$ to $0.4$ as seen in Figure \ref{fig:bA} decreases the bacteria concentration by about one unit, with a much more significant decrease in the amount of chemical used, from $1.5$ units for $A = 1$ to fewer than $0.35$ units for $A = 0.4$ at time $t = 1$. Increasing $A$ accounts for the scenario in our model where we use a stronger chemical nutrient. Adjusting to $A = 1.1$, we find that while the solutions begin close together for both $x(t)$ and $u^*(t)$, we observe increases of about one unit in both bacterial concentration and chemical nutrient by the end of our time interval.\\
+
+\noindent To understand more drastic dilutions or complete absence of the chemical, we can consider very small values of $A$, such as in Figure $\ref{fig:sA}$. A further reduction of $A$ to $0.01$ causes a slight (about $30$ percent) decrease in the final bacterial concentration compared to $A = 1$. Notably, eliminating $A$ altogether results in exactly the same bacterial concentration over time as having $A = 0.01$. However, the optimal control for these two parameter values are different; no chemical nutrient is added for $A = 0$ yet for $A = 0.01$, a very small amount is added. \\
+
+\begin{figure}[h!tbp]
+\centering
+\includegraphics[height = 4.5in]{M1 - large A.png}
+\caption{Optimal Bacterial Concentration and Optimal Amount of Added Chemical Nutrient with $A = 0.4, A = 1 \text{ and } A = 1.1$.}
+\label{fig:bA}
+\end{figure}
+
+\begin{figure}[h!tbp]
+\centering
+\includegraphics[height=4.5in]{M1 - small A.png}
+\caption{Optimal Bacterial Concentration and Optimal Amount of Added Chemical Nutrient with $A = 0.01 \text{ and } A = 0$.}
+\label{fig:sA}
+\end{figure}
+
+\newpage
+\subsection{Varying B}
+
+\begin{figure}[h!tbp]
+    \centering
+    \includegraphics[height=4in]{M1 - large B.png}
+    \caption{Optimal Bacterial Concentration and Optimal Amount of Added Chemical Nutrient with $B = 12$ and $B = 20$.}
+    \label{fig:lB}
+\end{figure}
+
+\begin{figure}[h!tbp]
+    \centering
+    \includegraphics[height=4in]{M1 - small B.png}
+    \caption{Optimal Bacterial Concentration and Optimal Amount of Added Chemical Nutrient with $B = 0.1$ and $B = 0$.}
+    \label{fig:sB}
+\end{figure}
+
+\noindent Depending on the chemical utilized, the byproduct can have a stronger or weaker hindering effect on bacterial multiplication, represented by changes in parameter $B$. We can clearly see that $B$ is not as sensitive to adjustments as other parameters have been, since increasing the strength from $B = 12$ to $B = 20$ reduces the final bacterial concentration and the size of the chemical injection by less than one unit each. \\
+
+\noindent Decreasing $B$ requires a decrease in $x_0$ so that MATLAB does not return an error message. With $B = 0.1$, observe how the shape of the control is concave, whereas in previous parameter simulations thus far it has been convex. For both $B = 0.1$ and $B = 0$, the control appears nearly constant, with few changes in chemical injection rate over time.   \\
+
+\newpage 
+\subsection{Varying r}
+
+\begin{figure}[h!tbp]
+    \centering
+    \includegraphics[height=5in]{M1 - varying r.png}
+    \caption{Optimal Bacterial Concentration and Optimal Amount of Added Chemical Nutrient Varying $R$.}
+    \label{fig:r}
+\end{figure}
+
+\noindent Varying $r$, the growth rate constant for $x'(t)$, results in significant differences in both final bacterial concentration and amount of chemical used. From Figure \ref{fig:r}, we see that for bacteria that have only a slightly faster or slower growth rates of $r = 1.1$ and $r = 0.8$, there is a noticeable difference by the final time, though small. When $r = 1.2$, the bacterial concentration spikes to about three times its size compared to $r = 1$, with a large chemical injection around $t = 0.7$. This sharp increase flattens out to a constant input of $6$ units between $t = 0.9$ and $t = 1$. Significantly decreasing the growth rate parameter to $r = 0.1$ results in a near-constant bacterial concentration, with almost no chemical nutrient added on $0 \leq t \leq 1$. \\
+
+\subsection{Varying C}
+
+\begin{figure}
+    \centering
+    \includegraphics[height=5in]{M1 - varying C.png}
+    \caption{Optimal Bacterial Concentration and Optimal Amount of Added Chemical Nutrient Varying $C$.}
+    \label{fig:C}
+\end{figure}
+
+In Figure \ref{fig:C}, we see that changing the parameter $C$ from $1$ to $5$ results in a nearly identical bacterial concentration on $0 \leq t \leq 0.8$, with a difference of about $\frac{1}{2}$ unit by $t = 1$. Moreover, the chemical nutrient is similarly identical to when $C = 1$ until we reach $t = 0.8$, where we observe a significant chemical injection, using about four times as much by the end of our time interval. This is particularly notable because this injection does not correspond to a population boom as it has in previous simulations. Decreasing $C$ to $0.2$ results in a near-constant optimal control that hovers above zero, which leads to a bacterial concentration of about $3$ units at $t = 1$.
+% - - - - - - - - - - - END Results - - - - - - - - - - -
+
+% - - - - - - - - - - - Discussion - - - - - - - - -
+\newpage
+\section{Discussion} 
+\label{sec:discussion} 
+
+\subsection{Preliminary Testing}
+
+\noindent In Figure \ref{fig:start}, we noticed a spike in the chemical nutrient around $t = 6$ and $t = 8$. We attribute this to the larger bacterial concentration later in the time interval; a larger concentration is more resistant to the effects of the chemical byproduct, meaning that more chemical can be used. 
+
+\subsection{Varying $x_0$}
+
+\noindent When setting $x_0$ to very small values, we expected a smaller chemical usage because of the heightened negative effects of the byproduct on the growth of smaller bacterial concentrations. This matched our results; for an initial concentration of $x_0 = 0.1$, we only used a very small amount of chemical nutrient. For $x_0 = 0.0001$, the amount of chemical used was next to none; the bacteria would most likely metabolize it into the hindering byproduct, which would have a highly concentrated effect on such a small population. Therefore the addition of nutrient at such small initial concentrations would not be beneficial to the population. \\
+
+\noindent We saw that for $x_0 = 1.145$, a sharp increase in bacterial concentration occurred around $t = 0.9$, whereas the control spiked around $t = 0.8$ and flattened out on $0.9 \leq t \leq 1$. This is likely because we defined the optimal control problem to minimize the amount of nutrient added while maximizing the bacterial concentration, and with the rapid rate of increase in concentration, injecting more nutrient between $t= 0.9$ and $t = 1$ did not have a significant benefit. Such rapid growth near the end of our time interval likely doesn't require large nutrient injections to reach maximal population levels, resulting in a constant control near the end of our time interval. \\
+
+\noindent Increasing the initial population only slightly to $1.16$ results in an error message from MATLAB due to the extremely large bacterial concentration at the final time. As the bacterial concentration crosses the threshold where the effects of the hindering byproduct are minimal, more chemical can be used without consequence, thus resulting in growth that is faster than exponential. A downside of this model is the inability to change the initial bacterial concentration much, as the simulation cannot process larger values of $x_0$. It is unrealistic as typically growth rate is also impacted by factors like available food and space to grow, so we would not be likely to observe this behavior in a laboratory. Still, for smaller values of $x_0$, the model provides a reasonable simulation of the scenario.
+
+\subsection{Varying A}
+
+\noindent Recall that $A$ represents the strength of the chemical nutrient. In Figure \ref{fig:sA}, we observed that the bacterial concentrations on $0 \leq t \leq 1$ were identical for $A = 0.01$ and $A = 0$, which represent incredibly weak or diluted nutrient solutions. We would expect to see little addition of such a weak chemical nutrient, and thus roughly exponential bacterial growth. For both $A = 0.01$ and $A = 0$, the plot for bacterial concentration on the time interval from $0$ to $1$ matches that of $e^x$. This makes sense because with no nutrient and thus no hindering byproduct, bacterial growth is modeled exponentially by $e^{rx}$, and since we set $r = 1$, the graph matches $e^x$ exactly. For $A = 0$, no chemical can be added without hindering the growth of the bacterial concentration as a result of the metabolized byproduct. On the other hand, $A = 0.01$ has a very small amount of chemical added.  \\
+
+\noindent Depending on the units selected for the optimal control, $0.008$ can be impractically small; consider if we used micro-liters, this would be smaller than the minimum amount a micro-pipette must be filled, and therefore impossible for researchers to actually add to the bacteria. Even so, this tiny chemical injection has absolutely no effect on the bacterial concentration, since using none of a zero-strength nutrient results in an identical plot. \\
+
+\noindent When changing $A$ less drastically, we noted that for $A = 1.1$ and $A = 0.4$, the changes in chemical nutrient were much more visible than changes in bacterial population at $t = 1$. This shows us that small changes of $A$ do significantly change the optimal amount of chemical used, but not the optimal bacterial concentration at the end of our time interval. This may be useful to researchers who wish to slightly dilute or concentrate the chemical for cost or safety reasons. It must be emphasized that these changes in concentration are small, particularly when compared to a parameter like $B$. In terms of behavior, varying $A$ slightly results in what we would expect: a stronger chemical nutrient would have a greater beneficial effect on the bacterial concentration, meaning that more would be used, whereas a weaker nutrient would have less of a positive effect on the bacterial concentration, with less used to avoid the negative effects of the byproduct.\\
+
+\subsection{Varying B}
+
+\noindent We considered how a stronger hindering byproduct affects bacterial concentration and the optimal size of the chemical injection in Figure \ref{fig:lB}. With more harmful byproduct, less chemical is used. We expected that for larger $B$, the benefit from chemical injection decreases due to the heightened detrimental effects of the chemical byproduct. \\
+
+\noindent A chemical nutrient with a less hindering byproduct was simulated in Figure \ref{fig:sB}. We observed a concave control for the first time, where in simulations thus far, the control has been convex. The chemical injection no longer shows a spike near the end of the time interval. Our previous simulations were convex due to the effect of the hindering byproduct; less chemical could be added when the bacterial concentration was small, meaning that $x(t)$ had to reach a certain threshold before a large amount of chemical nutrient could be injected without a significant hindering effect. With $B$ very small, this barrier is eliminated, allowing for a near-constant rate of chemical injection. Recall that we had to reduce $x_0$ when reducing $B$ to avoid a MATLAB error, which explains the small amount of chemical used. \\
+
+\noindent Similarly for $B = 0$, we saw a constant chemical injection, with a near-constant bacterial concentration; again, this was most likely due to our extremely small value of $x_0$. Had we used a larger initial bacterial concentration, we expect the population would grow faster than exponentially, as it had when we set $x_0 = 1.1495$.\\
+
+\noindent From our simulation, we saw that $B$ is a more robust parameter than those we have previously studied, such as $x_0$ or $A$. Increasing from $B = 12$ to $B = 20$ only changed the final amount of chemical used by about half a unit, showing that it is more important to know the exact strength of the nutrient $A$ than the exact strength of the byproduct $B$. This can be particularly useful for researchers who are purchasing a chemical nutrient at a certain concentration, but may not know the exact byproduct strength due to variations in bacterial metabolic rate. Knowing only a range for the parameter $B$ can provide very close approximations of the optimal bacterial concentration and chemical injection provided a fixed $A$. \\
+
+\subsection{Varying r}
+
+\noindent Bacteria typically grow exponentially, with the speed of their growth depending on the growth rate constant $r$. Some strains may have larger or smaller growth rate constants. Additionally, factors such as amount of food available can affect $r$. Understanding how different bacterial growth rates are simulated in this problem can be particularly helpful to researchers as the optimal chemical injection changes depending on which bacterial strain they are able to procure. \\
+
+\noindent For growth rate constants near our baseline of $r = 1$, we see in Figure \ref{fig:r} that slight increases or decreases in $r$ result in slight increases or decreases of $u^*(t)$ and consequently $x(t)$.  Similarly to when we set $x_0 = 1.1495$ in Figure \ref{fig:allx0}, we see a large chemical injection near the end of the time interval that flattens out when $r = 1.2$, and this results in a population boom after $t = 0.8$. Again, we can see that the bacterial concentration has passed the threshold between the hindering product and the chemical nutrient having a greater effect, therefore more chemical nutrient can be tolerated. Bacteria with extremely small growth rates do not reach this threshold and therefore can only tolerate small amounts of chemical nutrient. \\
+
+\noindent Though in nature bacteria can have vastly diverse growth rates, varying in scale from weeks to years, divisions are more frequent in a laboratory, typically occurring in minutes, hours, or days. Additionally, only a few bacterial strains are commonly used in laboratories, meaning the range of $r$ values is small. This model makes sense for this situation as it accounts for a small range of $r$ values that have vastly different behaviors, modeling what we may see in a controlled laboratory environment. \\
+
+\subsection{Varying C}
+
+\noindent Returning to our optimal control problem, $C$ represents the weight we assign to maximizing the bacterial population over minimizing our use of the chemical nutrient. When $C = 1$, we equally value minimizing total chemical usage and maximizing final bacterial population. A larger value of $C$ may represent a scenario where the chemical is cheap and plentiful, so we need not restrict its usage. In this case, we observe a large injection on the time interval $0.9 \leq t \leq 1$ with a small increase in bacterial concentration. This is what we would expect, as we prioritize this small increase over conserving chemical, so using a lot of nutrient for a small population increase is justified. \\
+
+\noindent Reducing to $C = 0.2$ represents the case where we need to conserve as much chemical as possible; it may be extremely expensive or not produced in a geographically accessible area. Next to no chemical is used. As expected, the differences in bacterial concentration between $C = 0.2$ and $C = 1$ do not become apparent until the end of the time interval, with about a $25$ percent reduction in population when using less nutrient. This makes sense as we have not reached the aforementioned threshold where the nutrient has greater effect than the harmful byproduct, so small parameter changes do not yet result in significant changes in final bacterial concentration.
+
+
+
+% - - - - - - - - - - - END Discussion - - - - - - - - - - -
+
+
+
+% - - - - - - - - - - - References - - - - - - - - -
+
+\begin{thebibliography}{9}\raggedright
+[1] Lenhart, S., and Workman, J. T. (2007). Optimal control applied to biological models. Chapman and Hall/CRC. 
+\end{thebibliography}
+
+% - - - - - - - - - - - END References - - - - - - - - - - -
+
+
+
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+%				END YOUR DOCUMENT - did you proofread?
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+\end{document} % End of document. Nothing after this line will appear in .pdf
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
