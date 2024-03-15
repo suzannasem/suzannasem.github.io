@@ -1,6 +1,6 @@
 title: Welcome
 author: Suzanna Semaan
-theme: minima
+theme: jekyll-theme-minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
