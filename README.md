@@ -1,5 +1,5 @@
-# Welcome
-I'm a math major interested in asset management and trading. I have experience using R, Python, MATLAB, and LaTeX, but am eager to learn more.
+# Suzanna S.
+I'm a math major interested in asset management and trading. I have experience using R, Python, MATLAB, and LaTeX, and am eager to learn more.
 Here you'll find some projects I've worked on!
 
 # Math 325: Optimal Control Theory
