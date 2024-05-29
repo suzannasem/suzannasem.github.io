@@ -5,13 +5,12 @@ Here you'll find some projects I've worked on.
 ## Tufts University VERSE REU - Summer 2023
 [Constraints on Corrections to General Relativity Using the Cassini Probe](https://github.com/suzannasem/General_Relativity/tree/main)
 
-## Math 325: Optimal Control Theory
-[Project 1](https://github.com/suzannasem/Bacterial_Growth): Bacteria Growth with Chemical Nutrient and Hindering Byproduct
+## Optimal Control Theory
+[Project 1](https://github.com/suzannasem/Bacterial_Growth): Bacteria Growth with Chemical Nutrient and Hindering Byproduct.
 
-[Project 2](https://github.com/suzannasem/HIV_Chemo/tree/main): Optimal Control Applied to Chemotherapy of Reverse Transcription Inhibitors for HIV
+[Project 2](https://github.com/suzannasem/HIV_Chemo/tree/main): Optimal Control Applied to Chemotherapy of Reverse Transcription Inhibitors for HIV.
 
-## Math 295: Statistics with R
-Project 1: 
+[Project 3](https://github.com/suzannasem/Predator_Pest): Optimal Control for Pesticide Treatments of Predator-Prey Populations.
 
-## Math 201: Multivariable Calculus
-Project 1: Mathematica French Press
+## Statistics with R
+Project 1 (coming soon): Predictors of High Post-Evolution CP for four species of Pokemon in Pokemon Go.
