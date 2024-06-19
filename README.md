@@ -15,10 +15,10 @@ Here you'll find some projects I've worked on.
 ## Statistics with R
 [Project 1](https://github.com/suzannasem/Pokemon_Go): Predictors of High Post-Evolution CP for four species of Pokemon in Pokemon Go.
 
-## Fun with Python
+## [Fun with Python](https://github.com/suzannasem/Python_Fun/tree/main)
 
-Project 1: Coca-Cola Vending Machine
+Project 1: Coca-Cola Vending Machine (description [here](https://cs50.harvard.edu/python/2022/psets/2/coke/))
 
-Project 2: Vanity Plates
+Project 2: Vanity Plates (description [here](https://cs50.harvard.edu/python/2022/psets/2/plates/))
 
-Project 3: Gas tank
+Project 3: Gas tank (description [here](https://cs50.harvard.edu/python/2022/psets/3/fuel/))
