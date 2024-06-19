@@ -5,7 +5,7 @@ Here you'll find some projects I've worked on.
 ## Tufts University VERSE REU - Summer 2023
 [Constraints on Corrections to General Relativity Using the Cassini Probe](https://github.com/suzannasem/General_Relativity/tree/main)
 
-## Optimal Control Theory
+## Optimal Control Theory with MATLAB
 [Project 1](https://github.com/suzannasem/Bacterial_Growth): Bacteria Growth with Chemical Nutrient and Hindering Byproduct.
 
 [Project 2](https://github.com/suzannasem/HIV_Chemo/tree/main): Optimal Control Applied to Chemotherapy of Reverse Transcription Inhibitors for HIV.
@@ -13,4 +13,12 @@ Here you'll find some projects I've worked on.
 [Project 3](https://github.com/suzannasem/Predator_Pest): Optimal Control for Pesticide Treatments of Predator-Prey Populations.
 
 ## Statistics with R
-Project 1 (coming soon): Predictors of High Post-Evolution CP for four species of Pokemon in Pokemon Go.
+[Project 1](https://github.com/suzannasem/Pokemon_Go): Predictors of High Post-Evolution CP for four species of Pokemon in Pokemon Go.
+
+## Fun with Python
+
+Project 1: Coca-Cola Vending Machine
+
+Project 2: Vanity Plates
+
+Project 3: Gas tank
