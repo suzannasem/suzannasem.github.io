@@ -12,6 +12,9 @@ Here you'll find some projects I've worked on.
 
 [Project 3](https://github.com/suzannasem/Predator_Pest): Optimal Control for Pesticide Treatments of Predator-Prey Populations.
 
+## Evolutionary Game Theory
+[Using Evolutionary Game Theory to Model Tumor Cell Dynamics](https://github.com/suzannasem/EGT_cancer)
+
 ## Statistics with R
 [Project 1](https://github.com/suzannasem/Pokemon_Go): Predictors of High Post-Evolution CP for four species of Pokemon in Pokemon Go.
 
