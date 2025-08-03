@@ -7,7 +7,7 @@ Math and data science student interested in the intersection of complex biologic
 [Poster: Constraints on Corrections to General Relativity Using the Cassini Probe](https://github.com/suzannasem/General_Relativity/tree/main)
 
 ## Bayesian Statistics with R
-[Analyzing Relationship between Natural Disasters and PTS Symptoms](https://github.com/suzannasem/natural_disasters/tree/main)
+[Analyzing Effects of PPE Type on Post-H2S Exposure Cognitive Performance](https://github.com/suzannasem/masking_exposure/tree/main)
 
 ## Optimal Control Theory with MATLAB
 [Project 1](https://github.com/suzannasem/Bacterial_Growth): Bacteria Growth with Chemical Nutrient and Hindering Byproduct.
@@ -22,5 +22,8 @@ Math and data science student interested in the intersection of complex biologic
 ## Statistics with R
 [Final Project](https://github.com/suzannasem/Pokemon_Go): Predictors of High Post-Evolution CP for four species of Pokemon in Pokemon Go.
 
-## Measles Vaccination Data Analysis (Python)
+## Mathematical Models in Applied Biological Contexts
+[Final Project](https://github.com/suzannasem/pancreatic_cell_model/tree/main): Incorporating Delta-Cells in Pancreatic Islet Cell Models to Examine the Efficacy of Somatostatin Treatment on Type II Diabetes.
+
+## Measles Vaccination Data Analysis (Python) - WIP
 [Visualizations/EDA of School Vaccination Dataset](https://www.datacamp.com/datalab/w/853e3e19-252a-48a9-8448-cfafd5de6d74/edit)
