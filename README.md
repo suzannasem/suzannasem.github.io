@@ -1,6 +1,12 @@
 # Suzanna S.
 Math and data science student interested in the intersection of complex biological problems with changing technological capabilities. Specialties include machine learning in R/Python, differential equation modeling in MATLAB, and querying in SQL. Here are some projects I've worked on in internships, the classroom, and just for fun :)
 
+## Computational Neuroscience
+Includes neural networks, PCA, and reinforcement learning: [Full Repo](https://github.com/suzannasem/compneuro) contains 5 projects in Python.
+
+## Modeling Lesion Growth in Endometriosis
+Work associated with my thesis research (WIP). [Link](https://github.com/suzannasem/endo)
+
 ## Tufts University VERSE REU
 [ArXiv Paper](https://doi.org/10.48550/arXiv.2503.19236)
 
