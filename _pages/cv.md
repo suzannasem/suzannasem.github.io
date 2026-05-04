@@ -4,14 +4,14 @@ title: "Resume"
 ---
 ## Education
   
-### **Bryn Mawr College, Master of Arts, Mathematics** | Expected May 2026
+### **Bryn Mawr College, Master of Arts, Mathematics** | May 2026
 
 *Cumulative GPA: 3.93/4.0*								
 
 * Relevant Coursework: Optimal Control Theory, Mathematical Modeling in Biology, Measure Theory, Algebraic Topology.
-Tentative Thesis Title: Modeling $ER_\beta$-mediated Lesion Growth in Early Endometriosis Onset.
+Thesis Title: Local Estradiol Synthesis in Infertility Onset: The LESIOn Model for Endometriosis-Associated Infertility.
 
-### **Bryn Mawr College, Bachelor of Arts**	| Expected May 2026
+### **Bryn Mawr College, Bachelor of Arts**	| May 2026
 
 *Cumulative GPA: 3.93/4.0* | Distinctions include Posse STEM Scholarship.
 * Major in Mathematics; Minor in Data Science	
