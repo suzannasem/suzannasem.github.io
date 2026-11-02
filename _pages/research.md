@@ -17,4 +17,4 @@ We build upon pre-existing models: [Miller (2025)](https://doi.org/10.1098/rsif.
 
 We have found a correlation between the concentration of ER-beta (an estrogen receptor implicated in endometriosis onset) and disease severity, with higher ER-beta concentrations in more advanced disease. We were also able to distinguish disease states based on the amount of E2 (estrogen) synthesized by lesions. The LESIOn model explains endo-associated infertility as a side effect of E2 synthesis by lesion cells.
 
-Work for this project is posted to [GitHub](https://github.com/suzannasem/endo)). 
+Work for this project is posted to [GitHub](https://github.com/suzannasem/endo). 
